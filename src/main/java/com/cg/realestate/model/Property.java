@@ -1,6 +1,8 @@
 
 package com.cg.realestate.model;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,8 @@ public class Property {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int propertyId;
+	@Column
+	private Date date;
 	@Column
 	private String propertyType;
 	@Column
@@ -35,7 +39,7 @@ public class Property {
 	
 	@OneToOne(cascade = CascadeType.ALL) 
 	@JoinColumn
-	private User user;
+	private Seller seller;
 		
 	public Property() {
 		super();
@@ -45,7 +49,7 @@ public class Property {
 
 	//Constructor for Flat
 	public Property( String propertyType, String room, double budget, String popertyStatus,
-			String areaPerSq, int floorNo, String location, String locality, User user) {
+			String areaPerSq, int floorNo, String location, String locality, Seller seller) {
 		super();
 		this.propertyType = propertyType;
 		this.room = room;
@@ -55,19 +59,29 @@ public class Property {
 		this.floorNo = floorNo;
 		this.location = location;
 		this.locality = locality;
-		this.user = user;
+		this.seller = seller;
+		}
+
+
+
+
+	public Date getDate() {
+		return date;
 	}
 
 
-
-
-	public User getUser() {
-		return user;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 
-	public void setUser(User user) {
-		this.user = user;
+	public Seller getUser() {
+		return seller;
+	}
+
+
+	public void setUser(Seller seller) {
+		this.seller = seller;
 	}
 
 

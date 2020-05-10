@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Seller {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,21 +22,19 @@ public class User {
 	private String phoneNo;
 	
 	
-	public User() {
+	public Seller() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public User(String phoneNo) {
+	public Seller(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
 	
-	public User(String userName, String emailId, String password, String phoneNo) {
+	public Seller(String userName, String emailId) {
 		super();
 		this.userName = userName;
 		this.emailId = emailId;
-		this.password = password;
-		this.phoneNo = phoneNo;
 		
 	}
 	
