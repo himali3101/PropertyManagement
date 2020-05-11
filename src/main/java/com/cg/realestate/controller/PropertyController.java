@@ -1,21 +1,33 @@
 package com.cg.realestate.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cg.realestate.model.Property;
+import com.cg.realestate.model.Request;
+import com.cg.realestate.service.AmazonClient;
 import com.cg.realestate.service.PropertyService;
+
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,15 +44,47 @@ public class PropertyController {
 
 	@Autowired
 	PropertyService service;
+	
+	private AmazonClient amazonClient;
+	
+	/*List<String> files = new ArrayList<String>();
+	   private final Path rootLocation = Paths.get("_Path_To_Save_The_File");
+
+	   @PostMapping("/savefile")
+	   public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+	      String message;
+	      try {
+	         try {
+	            Files.copy(file.getInputStream(), this.rootLocation.resolve("file_name.pdf"));
+	         } catch (Exception e) {
+	            throw new RuntimeException("FAIL!");
+	         }
+	         files.add(file.getOriginalFilename());
+
+	         message = "Successfully uploaded!";
+	         return ResponseEntity.status(HttpStatus.OK).body(message);
+	      } catch (Exception e) {
+	         message = "Failed to upload!";
+	         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+	      }
+	   }
+	
+	
+	*/
 
 	@PostMapping(path = "/")
 	@ApiOperation(value = "addProperty", nickname = "addProperty")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Property.class),
 							@ApiResponse(code = 500, message = "Failure", response = Property.class) })
 	public Property addProperty(@RequestBody Property property) {
+		
+		//Property property = new Property();
+		
 		logger.info("Adding Property.");
 		logger.trace(" Inside addProperty() function");
 		logger.error("Error happened at addProperty()");
+		
+		//property.setUrl(this.amazonClient.uploadFile(req.getFile()));
 		Date date = new Date();
 		property.setDate(date);
 		return service.addProperty(property);
@@ -102,4 +146,8 @@ public class PropertyController {
 		logger.error("Error happened at searchByBudget() of property");
 		return service.searchByBudget(budget);
 	}
+	
+	
+	
+	
 }

@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,41 +12,36 @@ import javax.persistence.OneToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
-public class Property {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class Request {
+	
 	private int propertyId;
-	@Column
 	private Date date;
+	
+	private MultipartFile file;
 
-
-	@Column
 	private String Url;
-
-	@Column
 	private String propertyType;
-	@Column
+	
 	private String room;
-	@Column
+
 	private double budget;
-	@Column
+	
 	private String popertyStatus;
-	@Column
+
 	private String areaPerSq;
-	@Column
+	
 	private int floorNo;
-	@Column
+	
 	private String location;
-	@Column
+	
 	private String locality;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn
 	private Seller seller;
 
-	public Property() {
+	
+	
+	public Request() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -68,7 +62,13 @@ public class Property {
 		this.date = date;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
 
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public String getUrl() {
 		return Url;
@@ -149,7 +149,8 @@ public class Property {
 	public void setSeller(Seller seller) {
 		this.seller = seller;
 	}
-
-	// Constructor for Flat
+	
+	
+	
 
 }
