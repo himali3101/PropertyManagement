@@ -5,15 +5,17 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
-@Entity
+@Entity(name = "propert")
 public class Property {
 
 	@Id
@@ -21,36 +23,59 @@ public class Property {
 	private int propertyId;
 	@Column
 	private Date date;
-
-
 	@Column
 	private String Url;
-
 	@Column
 	private String propertyType;
 	@Column
 	private String room;
-	@Column
+	@Column 
+	@NotNull
 	private double budget;
 	@Column
-	private String popertyStatus;
+	private String popertyStatus; 
 	@Column
 	private String areaPerSq;
 	@Column
 	private int floorNo;
 	@Column
+	@NotNull
 	private String location;
 	@Column
 	private String locality;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn
-	private Seller seller;
+	@Column
+	private String sellerName;
+	@Column
+	private String sellerEmailId;
 
 	public Property() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+
+	public Property( String url, String propertyType, String room, @NotNull double budget,
+			String popertyStatus, String areaPerSq, int floorNo, @NotNull String location, String locality,
+			String sellerName, String sellerEmailId) {
+		super();
+	
+		Url = url;
+		this.propertyType = propertyType;
+		this.room = room;
+		this.budget = budget;
+		this.popertyStatus = popertyStatus;
+		this.areaPerSq = areaPerSq;
+		this.floorNo = floorNo;
+		this.location = location;
+		this.locality = locality;
+		this.sellerName = sellerName;
+		this.sellerEmailId = sellerEmailId;
+	}
+
+
+
 
 	public int getPropertyId() {
 		return propertyId;
@@ -142,13 +167,34 @@ public class Property {
 		this.locality = locality;
 	}
 
-	public Seller getSeller() {
-		return seller;
+
+
+
+	public String getSellerName() {
+		return sellerName;
 	}
 
-	public void setSeller(Seller seller) {
-		this.seller = seller;
+
+
+
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
 	}
+
+
+
+
+	public String getSellerEmailId() {
+		return sellerEmailId;
+	}
+
+
+
+
+	public void setSellerEmailId(String sellerEmailId) {
+		this.sellerEmailId = sellerEmailId;
+	}
+	
 
 	// Constructor for Flat
 

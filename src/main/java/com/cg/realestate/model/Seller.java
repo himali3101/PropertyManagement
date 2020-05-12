@@ -5,31 +5,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-@Entity
+@Entity(name = "seller")
 public class Seller {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
-	@Column
+	@Column(unique=true)
+	@NotEmpty
+	@Pattern(regexp = "^[A-Za-z]*$",message = "Name must be alphabet")
 	private String userName;
     @Column
+    @Email
 	private String emailId;
-	@Column
-    private String password;
-	@Column
-	private String phoneNo;
-	
-	
+  		
 	public Seller() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Seller(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
 	
 	public Seller(String userName, String emailId) {
 		super();
@@ -56,23 +58,11 @@ public class Seller {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getPhoneNo() {
-		return phoneNo;
-	}
-	public void setPhoneNo(String phoneNo) {
-		this.phoneNo = phoneNo;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", EmailId=" + emailId + ", password=" + password
-				+ ", phoneNo=" + phoneNo + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", EmailId=" + emailId + "]";
 	}
 	
 	

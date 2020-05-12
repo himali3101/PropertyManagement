@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cg.realestate.model.Property;
 import com.cg.realestate.model.Request;
+import com.cg.realestate.model.Seller;
 //import com.cg.realestate.service.AmazonClient;
 import com.cg.realestate.service.PropertyService;
 
@@ -62,6 +63,7 @@ public class PropertyController {
 		//property.setUrl(this.amazonClient.uploadFile(req.getFile()));
 		Date date = new Date();
 		property.setDate(date);
+		//Seller seller = new Seller(property.getSeller().getUserName(), property.getSeller().getEmailId());
 		return service.addProperty(property);
 	}
 
