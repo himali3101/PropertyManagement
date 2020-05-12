@@ -25,7 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cg.realestate.model.Property;
 import com.cg.realestate.model.Request;
-import com.cg.realestate.service.AmazonClient;
+//import com.cg.realestate.service.AmazonClient;
 import com.cg.realestate.service.PropertyService;
 
 
@@ -45,33 +45,8 @@ public class PropertyController {
 	@Autowired
 	PropertyService service;
 	
-	private AmazonClient amazonClient;
+	//private AmazonClient amazonClient;
 	
-	/*List<String> files = new ArrayList<String>();
-	   private final Path rootLocation = Paths.get("_Path_To_Save_The_File");
-
-	   @PostMapping("/savefile")
-	   public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
-	      String message;
-	      try {
-	         try {
-	            Files.copy(file.getInputStream(), this.rootLocation.resolve("file_name.pdf"));
-	         } catch (Exception e) {
-	            throw new RuntimeException("FAIL!");
-	         }
-	         files.add(file.getOriginalFilename());
-
-	         message = "Successfully uploaded!";
-	         return ResponseEntity.status(HttpStatus.OK).body(message);
-	      } catch (Exception e) {
-	         message = "Failed to upload!";
-	         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
-	      }
-	   }
-	
-	
-	*/
-
 	@PostMapping(path = "/")
 	@ApiOperation(value = "addProperty", nickname = "addProperty")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Property.class),
@@ -148,6 +123,29 @@ public class PropertyController {
 	}
 	
 	
+	/*List<String> files = new ArrayList<String>();
+	   private final Path rootLocation = Paths.get("_Path_To_Save_The_File");
+
+	   @PostMapping("/savefile")
+	   public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+	      String message;
+	      try {
+	         try {
+	            Files.copy(file.getInputStream(), this.rootLocation.resolve("file_name.pdf"));
+	         } catch (Exception e) {
+	            throw new RuntimeException("FAIL!");
+	         }
+	         files.add(file.getOriginalFilename());
+
+	         message = "Successfully uploaded!";
+	         return ResponseEntity.status(HttpStatus.OK).body(message);
+	      } catch (Exception e) {
+	         message = "Failed to upload!";
+	         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+	      }
+	   }
 	
+	
+	*/
 	
 }

@@ -1,4 +1,4 @@
-package com.cg.realestate.service;
+/*package com.cg.realestate.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -81,4 +81,4 @@ public String uploadFile(MultipartFile multipartFile) {
     }
     return fileUrl;
 }
-}
+}*/

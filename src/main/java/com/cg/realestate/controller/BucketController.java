@@ -1,4 +1,4 @@
-package com.cg.realestate.controller;
+/*package com.cg.realestate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +17,7 @@ import com.cg.realestate.service.PropertyService;
 @RequestMapping("/storage/")
 public class BucketController {
 
+	
     private AmazonClient amazonClient;
     
     @Autowired
@@ -40,4 +41,4 @@ public class BucketController {
     public String deleteFile(@RequestPart(value = "url") String fileUrl) {
         return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
     }
-}
+}*/
