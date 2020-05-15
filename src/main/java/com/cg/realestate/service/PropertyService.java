@@ -29,6 +29,13 @@ public class PropertyService {
 		return properties;
 	}
 	
+	public void delete(int id) {
+	
+		dao.deleteById(id);
+		
+		
+	}
+	
 	public Property searchById(int id) {
 
 		return display().stream().filter((propertyId) -> propertyId.getPropertyId() == id).findAny().get();

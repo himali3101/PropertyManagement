@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cg.realestate.model.Property;
-import com.cg.realestate.model.Request;
-import com.cg.realestate.model.Seller;
 //import com.cg.realestate.service.AmazonClient;
 import com.cg.realestate.service.PropertyService;
 
@@ -73,10 +72,22 @@ public class PropertyController {
 							@ApiResponse(code = 500, message = "Failure", response = Property.class) })
 	public List<Property> display() {
 		logger.info("display property");
-		logger.trace(" Inside property display() function ");
-		logger.error("Error happened at display() of property");
+		
 		return service.display();
 	}
+	
+	@DeleteMapping(path = "/delete/{propertyId}")
+	@ApiOperation(value = "deleteProperty", nickname = "deleteProperty")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Property.class),
+							@ApiResponse(code = 500, message = "Failure", response = Property.class) })
+	public String delete(@PathVariable int propertyId) {
+		logger.info("display property");
+		service.delete(propertyId);
+		return "deleted";
+	}
+	
+	
+	
 
 	@CrossOrigin
 	@GetMapping(path = "/searchbyid/{id}")
@@ -86,7 +97,6 @@ public class PropertyController {
 	public Property searchById(@PathVariable int id) {
 		logger.info("search property by id");
 		logger.trace(" Inside searchById() function ");
-		logger.error("Error happened at searchById() of property");
 		return service.searchById(id);
 	}
 
@@ -98,7 +108,6 @@ public class PropertyController {
 	public List<Property> searchByLocation(@PathVariable String location) {
 		logger.info("Search property by location given by user");
 		logger.trace(" Inside searchByLocation() function ");
-		logger.error("Error happened at searchByLocation() of property");
 		return service.searchByLocation(location);
 	}
 
@@ -109,7 +118,6 @@ public class PropertyController {
 	public List<Property> searchByType(@PathVariable String type) {
 		logger.info("search property by property type");
 		logger.trace(" Inside searchByType() function ");
-		logger.error("Error happened at searchByType() of property");
 		return service.searchByType(type);
 	}
 
@@ -120,7 +128,6 @@ public class PropertyController {
 	public List<Property> searchByBudget(@PathVariable double budget) {
 		logger.info("Search property by price");
 		logger.trace(" Inside searchByBudget() function ");
-		logger.error("Error happened at searchByBudget() of property");
 		return service.searchByBudget(budget);
 	}
 	
